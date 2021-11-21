@@ -1,10 +1,9 @@
 <template>
   <div class="window">
     <div class="window-body">
-      <!-- <div v-for="page in myPages" :key="page">
-        <Page :page="page"></Page>
-      </div> -->
-      <MyPage :page="examplePage"> </MyPage>
+      <div class="page" v-for="page in myPages" :key="page">
+        <MyPage :page="page"> </MyPage>
+      </div>
     </div>
 
     <div class="window-footer">
@@ -17,7 +16,8 @@
 import { Vue, Options } from "vue-property-decorator";
 import MyPagesWindowFooter from "./MyPagesWindowFooter.vue";
 import MyPage from "../MyPage.vue";
-import { Page } from "@/classes/Page.class";
+import { Page } from "@/shared/Page.class";
+import store from "../../store/store";
 
 @Options({
   components: {
@@ -26,10 +26,8 @@ import { Page } from "@/classes/Page.class";
   }
 })
 export default class MyPagesWindow extends Vue {
-  examplePage: Page = {
-    title: "Soi Fon",
-    body: "Bankai! Jakuho Raikoben!"
-  };
+
+  myPages: Page[] = store.getters.myPages;
 }
 </script>
 
@@ -42,6 +40,7 @@ export default class MyPagesWindow extends Vue {
 
 .window-body {
   height: 94%;
+  overflow-y: scroll;
 }
 
 .window-footer {
@@ -49,4 +48,8 @@ export default class MyPagesWindow extends Vue {
   display: flex;
   justify-content: flex-end;
 }
+
+.page {
+}
+
 </style>

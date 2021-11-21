@@ -1,12 +1,22 @@
 import { createStore } from "vuex";
-import { Page } from "../classes/Page.class";
+import { Page } from "../shared/Page.class";
 
 export interface State {
   myPages: Page[];
 }
 
 export const state: State = {
-  myPages: []
+  myPages: [
+    new Page("Yamamoto"),
+    new Page("Soi Fon"),
+    new Page("Retsu"),
+    new Page("Byakuya"),
+    new Page("Sajin"),
+    new Page("Shunsui"),
+    new Page("Toshiro"),
+    new Page("Zaraki"),
+    new Page("Mayuri"),
+    new Page("Jushiro")]
 };
 
 const store = createStore({
