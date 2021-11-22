@@ -7,7 +7,7 @@ import { Vue, Prop } from "vue-property-decorator";
 import { Page } from "@/shared/Page.class";
 
 export default class MyPage extends Vue {
-  @Prop() page: Page = new Page("");
+  @Prop() page!: Page;
 
   get htmlTemplate() : string {
     return `<h2> ${this.page.name} </h2>`

@@ -28,8 +28,8 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import { Page } from "../../shared/Page.class";
-import store from "../../store/store";
+import { Page } from "@/shared/Page.class";
+import store from "@/shared/store/store";
 
 export default class MyPagesWindowFooter extends Vue {
   public name = "";

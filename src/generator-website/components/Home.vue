@@ -1,7 +1,9 @@
 <template>
-  <router-link to="/WebsiteCreation">
+  <router-link to="/GeneratorWebsite/WebsiteCreation">
     <w-button bg-color="success">Create a New Website!</w-button>
   </router-link>
+
+  <router-view></router-view>
 </template>
 
 <script lang="ts">

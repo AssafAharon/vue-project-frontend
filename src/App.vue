@@ -11,8 +11,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Options, Prop } from 'vue-property-decorator';
-import Header from "./components/Header.vue";
+import { Vue, Options } from 'vue-property-decorator';
+import Header from "./generator-website/components/Header.vue";
 
 @Options({
   components: {

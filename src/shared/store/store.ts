@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import { Page } from "../shared/Page.class";
+import { Page } from "../Page.class";
 
 export interface State {
   myPages: Page[];

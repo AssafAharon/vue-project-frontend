@@ -3,7 +3,7 @@
 
   <MyPagesWindow></MyPagesWindow>
 
-  <router-link to="/">Go Back</router-link>
+  <router-link to="/GeneratorWebsite">Go Back</router-link>
 </template>
 
 <script lang="ts">

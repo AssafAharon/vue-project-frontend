@@ -1,7 +1,7 @@
 <template>
   <div class="window">
     <div class="window-body">
-      <div class="page" v-for="page in myPages" :key="page">
+      <div class="page" v-for="page in myPages" :key="page.name">
         <MyPage :page="page"> </MyPage>
       </div>
     </div>
@@ -17,7 +17,7 @@ import { Vue, Options } from "vue-property-decorator";
 import MyPagesWindowFooter from "./MyPagesWindowFooter.vue";
 import MyPage from "../MyPage.vue";
 import { Page } from "@/shared/Page.class";
-import store from "../../store/store";
+import store from "@/shared/store/store";
 
 @Options({
   components: {
@@ -48,8 +48,4 @@ export default class MyPagesWindow extends Vue {
   display: flex;
   justify-content: flex-end;
 }
-
-.page {
-}
-
 </style>
