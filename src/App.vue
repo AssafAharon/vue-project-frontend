@@ -2,8 +2,6 @@
   <w-app>
     <div class="first-container">
       <div class="second-container">
-        <Header></Header>
-
         <router-view></router-view>
       </div>
     </div>
@@ -11,14 +9,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Options } from 'vue-property-decorator';
-import Header from "./generator-website/components/Header.vue";
+import { Vue } from 'vue-property-decorator';
 
-@Options({
-  components: {
-    Header
-  }
-})
 export default class App extends Vue {
 }
 </script>

@@ -1,4 +1,5 @@
 <template>
+  <h1>Generator Website</h1>
   <router-link to="/GeneratorWebsite/WebsiteCreation">
     <w-button bg-color="success">Create a New Website!</w-button>
   </router-link>
