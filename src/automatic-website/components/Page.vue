@@ -1,14 +1,18 @@
 <template>
-  <Title :text="titleText"></Title>
-  <Image :src="imageSrc"></Image>
-  <Paragraph :text="paragraphText"></Paragraph>
+  <div class="page">
+    <Title :text="pageProps.name"></Title>
+    <Image :src="pageProps.imageSrc"></Image>
+    <Paragraph :text="pageProps.paragraphText"></Paragraph>   
+  </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-property-decorator";
+import { Options, Prop, Vue } from "vue-property-decorator";
 import Title from "./Title.vue";
 import Paragraph from "./Paragraph.vue";
 import Image from "./Image.vue";
+import { AutomaticPageData } from "@/shared/AutomaticPageData.interface";
+
 
 @Options({
   components: {
@@ -18,8 +22,16 @@ import Image from "./Image.vue";
   }
 })
 export default class Page extends Vue {
-  titleText: string = "";
-  imageSrc: string = "";
-  paragraphText: string = "";
+  @Prop() pageProps!: AutomaticPageData;
 }
 </script>
+
+<style scoped>
+.page {
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+</style>

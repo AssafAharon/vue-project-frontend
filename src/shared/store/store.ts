@@ -1,29 +1,12 @@
-import { createStore } from "vuex";
-import { Page } from "../Page.class";
+import { createStore, Store } from "vuex";
+import { AutomaticPageData } from "../AutomaticPageData.interface";
+import { AppState, APP_INITIAL_STATE } from "./state";
 
-export interface State {
-  myPages: Page[];
-}
-
-export const state: State = {
-  myPages: [
-    new Page("Yamamoto"),
-    new Page("Soi Fon"),
-    new Page("Retsu"),
-    new Page("Byakuya"),
-    new Page("Sajin"),
-    new Page("Shunsui"),
-    new Page("Toshiro"),
-    new Page("Zaraki"),
-    new Page("Mayuri"),
-    new Page("Jushiro")]
-};
-
-const store = createStore({
-  state,
+const store: Store<AppState> = createStore({
+  state: APP_INITIAL_STATE,
   mutations: {
-    addNewPage(state, payload: Page) {
-      state.myPages.push(payload);
+    addNewPage(state, payload: AutomaticPageData) {
+      state.automaticWebsiteData.allPagesData.push(payload);
     }
   },
   actions: {
@@ -32,8 +15,11 @@ const store = createStore({
     }
   },
   getters: {
-    myPages() {
-      return state.myPages;
+    automaticWebsiteData(state: AppState) {
+      return state.automaticWebsiteData;
+    },
+    allAutomaticPagesData(state: AppState) {
+      return state.automaticWebsiteData.allPagesData;
     }
   }
 });

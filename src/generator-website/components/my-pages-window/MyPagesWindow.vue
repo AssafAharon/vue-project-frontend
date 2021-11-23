@@ -1,14 +1,19 @@
 <template>
-  <div class="window">
-    <div class="window-body">
-      <div class="page" v-for="page in myPages" :key="page.name">
-        <MyPage :page="page"> </MyPage>
+  <div class="my-pages-window">
+    <div class="window">
+      <div class="window-body">
+        <div class="page" v-for="page in myPages" :key="page.name">
+          <MyPage :page="page"></MyPage>
+        </div>
+      </div>
+
+      <div class="window-footer">
+        <MyPagesWindowFooter></MyPagesWindowFooter>
       </div>
     </div>
-
-    <div class="window-footer">
-      <MyPagesWindowFooter></MyPagesWindowFooter>
-    </div>
+    <router-link to="/AutomaticWebsite">
+      <w-button bg-color="info">Preview</w-button>
+    </router-link>
   </div>
 </template>
 
@@ -16,7 +21,7 @@
 import { Vue, Options } from "vue-property-decorator";
 import MyPagesWindowFooter from "./MyPagesWindowFooter.vue";
 import MyPage from "../MyPage.vue";
-import { Page } from "@/shared/Page.class";
+import { AutomaticPageData } from "@/shared/AutomaticPageData.interface";
 import store from "@/shared/store/store";
 
 @Options({
@@ -26,12 +31,15 @@ import store from "@/shared/store/store";
   }
 })
 export default class MyPagesWindow extends Vue {
-
-  myPages: Page[] = store.getters.myPages;
+  myPages: AutomaticPageData[] = store.getters.allAutomaticPagesData;
 }
 </script>
 
 <style scoped>
+.my-pages-window{
+  display: flex;
+  justify-content: space-between;
+}
 .window {
   width: 500px;
   height: 500px;

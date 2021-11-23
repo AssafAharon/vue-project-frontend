@@ -1,5 +1,7 @@
 <template>
-  <p>{{ text }}</p>
+  <div class="paragraph">
+    <p>{{ text }}</p>
+  </div>
 </template>
 
 <script lang="ts">
@@ -9,3 +11,10 @@ export default class Paragraph extends Vue {
   @Prop() text!: string;
 }
 </script>
+
+<style scoped>
+.paragraph {
+  display: flex;
+  justify-content: center;;
+}
+</style>

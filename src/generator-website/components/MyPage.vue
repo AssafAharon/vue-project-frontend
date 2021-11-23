@@ -3,11 +3,12 @@
 </template>
 
 <script lang="ts">
+import { AutomaticPageData } from "@/shared/AutomaticPageData.interface";
 import { Vue, Prop } from "vue-property-decorator";
-import { Page } from "@/shared/Page.class";
+
 
 export default class MyPage extends Vue {
-  @Prop() page!: Page;
+  @Prop() page!: AutomaticPageData;
 
   get htmlTemplate() : string {
     return `<h2> ${this.page.name} </h2>`

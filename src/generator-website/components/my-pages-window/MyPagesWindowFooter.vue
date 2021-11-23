@@ -8,7 +8,9 @@
     >Add a Page</w-button>
 
   <w-dialog v-model="dialog1.show" :width="700" title="Page Details">
-    <w-input class="mb4" label="Name" v-model="name"></w-input>
+    <w-input class="mb4" label="Name" v-model="pageName"></w-input>
+    <w-input class="mb4" label="Image Src" v-model="pageImageSrc"></w-input>
+    <w-textarea label="Text" v-model="pageParagraphText"></w-textarea>
 
     <template #actions>
       <div class="spacer" />
@@ -28,18 +30,20 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import { Page } from "@/shared/Page.class";
+import { AutomaticPageData } from "@/shared/AutomaticPageData.interface";
 import store from "@/shared/store/store";
 
 export default class MyPagesWindowFooter extends Vue {
-  public name = "";
-  public dialog1 = { show: false };
-  public dialog2 = { show: false };
+  pageName = "";
+  pageImageSrc = "";
+  pageParagraphText = "";
+  dialog1 = { show: false };
+  dialog2 = { show: false };
 
   onAddNewPage(): void {
-      const pageToAdd: Page = new Page(this.name);
+      const pageToAdd: AutomaticPageData = {id: "7", name: this.pageName, imageSrc: this.pageImageSrc, paragraphText: this.pageParagraphText};
       store.commit("addNewPage", pageToAdd);
-      console.log(store.getters.myPages);
+      this.dialog1.show = false;
   }
 }
 </script>

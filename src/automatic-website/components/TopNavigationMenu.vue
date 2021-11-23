@@ -1,11 +1,11 @@
 <template>
     <w-toolbar class="mt6 py1">
       <div class="top-navigation-menu">
-        <div class="title3">{{ automaticWebsiteName }}</div>
+        <div class="title3">{{ topNavigationMenuProps.websiteName }}</div>
 
         <div class="menu-items">
-          <div class="menu-item" v-for="menuItem in menuItems" :key="menuItem">
-            {{menuItem}}
+          <div :style="customWidth" class="menu-item" v-for="menuItem in topNavigationMenuProps.pagesMetadata" :key="menuItem.pageId" @click="onMenuItemClick(menuItem)">
+            {{menuItem.pageName}}
           </div>
         </div>
       </div>
@@ -13,11 +13,17 @@
 </template>
 
 <script lang="ts">
-import { Prop, Vue } from "vue-property-decorator";
+import { Emit, Prop, Vue } from "vue-property-decorator";
+import { AutomaticNavigationMenuData, AutomaticPageMetadata } from "../entities/AutomaticNavigationMenuData";
 
 export default class TopNavigationMenu extends Vue {
-  @Prop() automaticWebsiteName!: string;
-  menuItems = ["Ichigo", "Rukia", "Uryu", "Orihime", "Chad"];
+  @Prop() topNavigationMenuProps!: AutomaticNavigationMenuData;
+  customWidth = `width: calc(100% / ${this.topNavigationMenuProps.pagesMetadata.length})`;
+
+  @Emit()
+  onMenuItemClick(menuItem: AutomaticPageMetadata): AutomaticPageMetadata {
+    return menuItem;
+  }
 }
 </script>
 
@@ -35,5 +41,15 @@ export default class TopNavigationMenu extends Vue {
     width: 95%;
     display: flex;
     justify-content: space-evenly;
+  }
+
+  .menu-item {
+    display: flex;
+    justify-content: center;
+  }
+
+  .menu-item:hover {
+    background: #FAF0E6;
+    cursor: pointer;
   }
 </style>
