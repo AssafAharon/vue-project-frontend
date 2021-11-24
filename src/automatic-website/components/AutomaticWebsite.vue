@@ -17,8 +17,8 @@ import TopNavigationMenu from "./TopNavigationMenu.vue";
 import Page from "./Page.vue";
 import { AutomaticNavigationMenuData, AutomaticPageMetadata } from "../entities/AutomaticNavigationMenuData";
 import store from "@/shared/store/store";
-import { AutomaticWebsiteData } from "@/shared/AutomaticWebsiteData.interface";
-import { AutomaticPageData } from "@/shared/AutomaticPageData.interface";
+import { AutomaticWebsiteData } from "@/shared/entities/AutomaticWebsiteData.interface";
+import { AutomaticPageData } from "@/shared/entities/AutomaticPageData.interface";
 
 
 @Options({
@@ -41,7 +41,7 @@ export default class AutomaticWebsite extends Vue {
   updatePageData(pageMetadata: AutomaticPageMetadata): void {
     this.currentPageProps = this.websiteData.allPagesData.find(currentPageProps => currentPageProps.id === pageMetadata.pageId)
     ||
-    {id: "", name: "", imageSrc: "", paragraphText: ""};
+    {id: "", name: "", imageSrcs: [""], paragraphTexts: [""]};
   }
 }
 </script>

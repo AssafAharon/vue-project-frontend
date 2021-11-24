@@ -1,5 +1,5 @@
 import { createStore, Store } from "vuex";
-import { AutomaticPageData } from "../AutomaticPageData.interface";
+import { AutomaticPageData } from "../entities/AutomaticPageData.interface";
 import { AppState, APP_INITIAL_STATE } from "./state";
 
 const store: Store<AppState> = createStore({

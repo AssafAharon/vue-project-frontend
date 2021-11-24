@@ -30,7 +30,8 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import { AutomaticPageData } from "@/shared/AutomaticPageData.interface";
+import { AutomaticPageData } from "@/shared/entities/AutomaticPageData.interface";
+import { v4 as generateUUIDV4 } from "uuid";
 import store from "@/shared/store/store";
 
 export default class MyPagesWindowFooter extends Vue {
@@ -41,9 +42,10 @@ export default class MyPagesWindowFooter extends Vue {
   dialog2 = { show: false };
 
   onAddNewPage(): void {
-      const pageToAdd: AutomaticPageData = {id: "7", name: this.pageName, imageSrc: this.pageImageSrc, paragraphText: this.pageParagraphText};
+      const pageToAdd: AutomaticPageData = {id: generateUUIDV4(), name: this.pageName, imageSrcs: [this.pageImageSrc], paragraphTexts: [this.pageParagraphText]};
       store.commit("addNewPage", pageToAdd);
       this.dialog1.show = false;
+      console.log(store.getters.allAutomaticPagesData);
   }
 }
 </script>

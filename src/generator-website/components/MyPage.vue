@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { AutomaticPageData } from "@/shared/AutomaticPageData.interface";
+import { AutomaticPageData } from "@/shared/entities/AutomaticPageData.interface";
 import { Vue, Prop } from "vue-property-decorator";
 
 

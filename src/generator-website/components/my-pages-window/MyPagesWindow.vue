@@ -21,7 +21,7 @@
 import { Vue, Options } from "vue-property-decorator";
 import MyPagesWindowFooter from "./MyPagesWindowFooter.vue";
 import MyPage from "../MyPage.vue";
-import { AutomaticPageData } from "@/shared/AutomaticPageData.interface";
+import { AutomaticPageData } from "@/shared/entities/AutomaticPageData.interface";
 import store from "@/shared/store/store";
 
 @Options({

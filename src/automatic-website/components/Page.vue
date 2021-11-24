@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <Title :text="pageProps.name"></Title>
-    <Image :src="pageProps.imageSrc"></Image>
-    <Paragraph :text="pageProps.paragraphText"></Paragraph>   
+    <Image :src="pageProps.imageSrcs[0]"></Image>
+    <Paragraph :text="pageProps.paragraphTexts[0]"></Paragraph>   
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import { Options, Prop, Vue } from "vue-property-decorator";
 import Title from "./Title.vue";
 import Paragraph from "./Paragraph.vue";
 import Image from "./Image.vue";
-import { AutomaticPageData } from "@/shared/AutomaticPageData.interface";
+import { AutomaticPageData } from "@/shared/entities/AutomaticPageData.interface";
 
 
 @Options({
