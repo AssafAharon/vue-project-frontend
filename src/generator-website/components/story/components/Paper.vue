@@ -1,14 +1,14 @@
 <template>
-  <div :class="pageHTMLClass" :ref="pageHTMLRef" :style="pageStyle">
+  <div :class="paperHTMLClass" :ref="paperHTMLRef" :style="paperStyle">
     <div class="front">
       <div class="front-content">
-        <h1>{{ pageFrontSide }}</h1>
+        <h1>{{ paperFrontSide.pageDetails }}</h1>
       </div>
     </div>
 
     <div class="back">
       <div class="back-content">
-        <h1>{{ pageBackSide }}</h1>
+        <h1>{{ paperBackSide.pageDetails }}</h1>
       </div>
     </div>
   </div>
@@ -16,23 +16,24 @@
 
 <script lang="ts">
 import { Prop, Vue } from "vue-property-decorator";
+import Page from "../entities/Page.class";
 
-export default class TwoSidedPageComponent extends Vue {
-  @Prop() pageNumber!: number;
-  @Prop() pageZIndex!: number;
-  @Prop() pageFrontSide!: string;
-  @Prop() pageBackSide!: string;
-  @Prop() pageZIndexForPrevFlip!: string;
+export default class PaperComponent extends Vue {
+  @Prop() paperNumber!: number;
+  @Prop() paperZIndex!: number;
+  @Prop() paperFrontSide!: Page;
+  @Prop() paperBackSide!: Page;
+  @Prop() paperZIndexForPrevFlip!: string;
 
-  get pageHTMLClass(): string {
-    return `p${this.pageNumber} paper`;
+  get paperHTMLClass(): string {
+    return `p${this.paperNumber} paper`;
   }
 
-  get pageHTMLRef(): string {
-    return `p${this.pageNumber}Div`;
+  get paperHTMLRef(): string {
+    return `p${this.paperNumber}Div`;
   }
 
-  get pageStyle(): string {
+  get paperStyle(): string {
     return `
       position: absolute;
       width: 100%;
@@ -40,19 +41,19 @@ export default class TwoSidedPageComponent extends Vue {
       top: 0;
       left: 0;
       perspective: 1500px;
-      z-index: ${this.pageZIndex}`;
+      z-index: ${this.paperZIndex}`;
   }
 
   flipToPrevPage(): void {
-    const pageDiv: HTMLDivElement = this.$refs[this.pageHTMLRef] as HTMLDivElement;
+    const pageDiv: HTMLDivElement = this.$refs[this.paperHTMLRef] as HTMLDivElement;
     pageDiv.classList.remove("flipped");
-    pageDiv.style.zIndex = this.pageZIndex.toString();
+    pageDiv.style.zIndex = this.paperZIndex.toString();
   }
 
   flipToNextPage(): void {
-    const pageDiv: HTMLDivElement = this.$refs[this.pageHTMLRef] as HTMLDivElement;
+    const pageDiv: HTMLDivElement = this.$refs[this.paperHTMLRef] as HTMLDivElement;
     pageDiv.classList.add("flipped");
-    pageDiv.style.zIndex = this.pageNumber.toString();
+    pageDiv.style.zIndex = this.paperNumber.toString();
   }
 }
 </script>

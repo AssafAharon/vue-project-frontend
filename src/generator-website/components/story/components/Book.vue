@@ -3,10 +3,10 @@
     <Paper
       v-for="paper in book.papers"
       :key="paper.paperNumber"
-      :pageNumber="paper.paperNumber"
-      :pageZIndex="book.papers.length - paper.paperNumber + 1"
-      :pageFrontSide="paper.frontPage"
-      :pageBackSide="paper.backPage"
+      :paperNumber="paper.paperNumber"
+      :paperZIndex="book.papers.length - paper.paperNumber + 1"
+      :paperFrontSide="paper.frontPage"
+      :paperBackSide="paper.backPage"
       :ref="`p${paper.paperNumber}`"
     ></Paper>
   </div>
@@ -50,6 +50,15 @@ export default class BookComponent extends Vue {
         },
         backPage: {
           pageDetails: "Back 3"
+        }
+      },
+      {
+        paperNumber: 4,
+        frontPage: {
+          pageDetails: "Front 4"
+        },
+        backPage: {
+          pageDetails: "Back 4"
         }
       }
     ]
