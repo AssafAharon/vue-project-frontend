@@ -1,15 +1,15 @@
 <template>
   <div class="top-navigation-menu">
     <ul>
-      <li class="left"><img src="../../assets/narrative-logo-basic.png"></li>
+      <li class="left"><img src="../assets/narrative-logo-basic.png"></li>
 
-      <router-link to="/GeneratorWebsite/Home"><li class="left menu-item">Home</li></router-link>
+      <router-link to="/Home"><li class="left menu-item">Home</li></router-link>
 
-      <router-link to="/GeneratorWebsite/News"><li class="left menu-item">News</li></router-link>
+      <router-link to="/News"><li class="left menu-item">News</li></router-link>
 
-      <router-link to="/GeneratorWebsite/Contact"><li class="left menu-item">Contact</li></router-link>
+      <router-link to="/Contact"><li class="left menu-item">Contact</li></router-link>
 
-      <router-link to="/GeneratorWebsite/About"><li class="right menu-item">About</li></router-link>
+      <router-link to="/About"><li class="right menu-item">About</li></router-link>
     </ul>
   </div>
 </template>

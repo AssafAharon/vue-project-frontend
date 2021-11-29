@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-property-decorator';
-import TopNavigationMenu from './generator-website/components/TopNavigationMenu.vue';
+import TopNavigationMenu from './components/TopNavigationMenu.vue';
 
 @Options({
   components: {

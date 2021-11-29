@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import App from "../../App.vue";
-import Home from "../../generator-website/components/Home.vue";
+import Home from "../../components/Home.vue";
 
 const routes = [
   {
@@ -8,7 +8,7 @@ const routes = [
     component: App
   },
   {
-    path: "/GeneratorWebsite/Home",
+    path: "/Home",
     component: Home
   }
 ];
