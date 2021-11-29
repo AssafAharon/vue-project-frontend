@@ -1,71 +1,91 @@
 <template>
   <div class="book" ref="bookDiv">
-    <TwoSidedPageComponent :pageNumber="1" :pageZIndex="3" pageFrontSide="Front 1" pageBackSide="Back 1" ref="p1"></TwoSidedPageComponent>
-    <TwoSidedPageComponent :pageNumber="2" :pageZIndex="2" pageFrontSide="Front 2" pageBackSide="Back 2" ref="p2"></TwoSidedPageComponent>
-    <TwoSidedPageComponent :pageNumber="3" :pageZIndex="1" pageFrontSide="Front 3" pageBackSide="Back 3" ref="p3"></TwoSidedPageComponent>
+    <Paper
+      v-for="paper in book.papers"
+      :key="paper.paperNumber"
+      :pageNumber="paper.paperNumber"
+      :pageZIndex="book.papers.length - paper.paperNumber + 1"
+      :pageFrontSide="paper.frontPage"
+      :pageBackSide="paper.backPage"
+      :ref="`p${paper.paperNumber}`"
+    ></Paper>
   </div>
 </template>
 
 <script lang="ts">
-
 import { Emit, Options, Ref, Vue } from "vue-property-decorator";
-import TwoSidedPageComponent from "./TwoSidedPage.vue";
+import Book from "../entities/Book.class";
+import Paper from "./Paper.vue";
 
 @Options({
   components: {
-    TwoSidedPageComponent
+    Paper
   }
 })
 export default class BookComponent extends Vue {
-
+  book: Book = {
+    papers: [
+      {
+        paperNumber: 1,
+        frontPage: {
+          pageDetails: "Front 1"
+        },
+        backPage: {
+          pageDetails: "Back 1"
+        }
+      },
+      {
+        paperNumber: 2,
+        frontPage: {
+          pageDetails: "Front 2"
+        },
+        backPage: {
+          pageDetails: "Back 2"
+        }
+      },
+      {
+        paperNumber: 3,
+        frontPage: {
+          pageDetails: "Front 3"
+        },
+        backPage: {
+          pageDetails: "Back 3"
+        }
+      }
+    ]
+  };
   currentLocation = 1;
-  numOfPapers = 3;
-  nextLocation = this.numOfPapers + 1;
+  nextLocation = this.book.papers.length + 1;
 
   @Ref() bookDiv!: HTMLDivElement;
 
-  @Ref() p1!: TwoSidedPageComponent;
-  @Ref() p2!: TwoSidedPageComponent;
-  @Ref() p3!: TwoSidedPageComponent;
-
   @Emit()
-  openBook(): boolean {
+  openBook(): void {
     this.bookDiv.style.transform = "translateX(50%)";
-    return true;
   }
 
   @Emit()
-  closeBook(isAtBeginning: boolean): boolean {
+  closeBook(isAtBeginning: boolean): void {
     if (isAtBeginning) {
       this.bookDiv.style.transform = "translateX(0%)";
     }
     else {
       this.bookDiv.style.transform = "translateX(100%)";
     }
-
-    return false;
   }
 
   onGoNextPage(): void {
     if (this.currentLocation < this.nextLocation) {
-      switch (this.currentLocation) {
-        case 1: {
-          this.openBook();
-          this.p1.flipToNextPage();
-          break;
-        }
-        case 2: {
-          this.p2.flipToNextPage();
-          break;
-        }
-        case 3: {
-          this.p3.flipToNextPage();
-          this.closeBook(false);
-          break;
-        }
-        default: {
-          break;
-        }
+      const currentPaper = this.$refs[`p${this.currentLocation}`] as Paper;
+      if (this.currentLocation === 1) {
+        this.openBook();
+        currentPaper.flipToNextPage();
+      } else if (this.currentLocation === this.book.papers.length) {
+        currentPaper.flipToNextPage();
+        this.closeBook(false);
+      }
+      else {
+        currentPaper.flipToNextPage();
       }
 
       this.currentLocation++;
@@ -74,24 +94,16 @@ export default class BookComponent extends Vue {
 
   onGoPrevPageChanged(): void {
     if (this.currentLocation > 1) {
-      switch (this.currentLocation) {
-        case 2: {
-          this.closeBook(true);
-          this.p1.flipToPrevPage();
-          break;
-        }
-        case 3: {
-          this.p2.flipToPrevPage();
-          break;
-        }
-        case 4: {
-          this.openBook();
-          this.p3.flipToPrevPage();
-          break;
-        }
-        default: {
-          break;
-        }
+      const currentPaper = this.$refs[`p${this.currentLocation - 1}`] as Paper;
+      if (this.currentLocation === 2) {
+        this.closeBook(true);
+        currentPaper.flipToPrevPage();
+      } else if (this.currentLocation === this.book.papers.length + 1) {
+        this.openBook();
+        currentPaper.flipToPrevPage();
+      }
+      else {
+        currentPaper.flipToPrevPage();
       }
 
       this.currentLocation--;

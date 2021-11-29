@@ -1,9 +1,9 @@
-import Page from "./Page.class";
+import Paper from "./Paper.class";
 
 export default class Book {
-  pages: Page[];
+  papers: Paper[];
 
   constructor() {
-    this.pages = [];
+    this.papers = [];
   }
 }

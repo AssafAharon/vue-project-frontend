@@ -1,9 +1,7 @@
 export default class Page {
-  number: number;
-  details: string;
+  pageDetails: string;
 
-  constructor() {
-    this.number = 0;
-    this.details = "";
+  constructor(pageDetails: string) {
+    this.pageDetails = pageDetails;
   }
 }
