@@ -1,16 +1,22 @@
 <template>
   <w-app>
-    <div class="first-container">
-      <div class="second-container">
-        <router-view></router-view>
-      </div>
-    </div>
+
+    <TopNavigationMenu></TopNavigationMenu>
+
+    <router-view></router-view>
+
   </w-app>
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-property-decorator';
+import { Options, Vue } from 'vue-property-decorator';
+import TopNavigationMenu from './generator-website/components/TopNavigationMenu.vue';
 
+@Options({
+  components: {
+    TopNavigationMenu
+  }  
+})
 export default class App extends Vue {
 }
 </script>
@@ -20,17 +26,5 @@ export default class App extends Vue {
 
 body {
   font-family: 'Poppins', sans-serif;
-}
-
-.first-container {
-  display: flex;
-  justify-content: center;
-}
-
-.second-container {
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 </style>

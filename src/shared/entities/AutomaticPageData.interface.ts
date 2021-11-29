@@ -3,4 +3,6 @@ export interface AutomaticPageData {
   name: string;
   imageSrcs: string[];
   paragraphTexts: string[];
+  //youtube videos???
+  //google maps???
 }

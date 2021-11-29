@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import App from "../../App.vue";
-import Home from "../../generator-website/components/Home.vue";
 import WebsiteCreation from "../../generator-website/components/WebsiteCreation.vue";
 import AutomaticWebsite from "../../automatic-website/components/AutomaticWebsite.vue";
+import App from "../../App.vue";
+import Home from "../../generator-website/components/Home.vue";
+import Page from "../../automatic-website/components/page/Page.vue"
+import Chat from "../../automatic-website/components/chat/Chat.vue"
 
 const routes = [
   {
@@ -10,7 +12,7 @@ const routes = [
     component: App
   },
   {
-    path: "/GeneratorWebsite",
+    path: "/GeneratorWebsite/Home",
     component: Home,
     children: [
       {
@@ -21,7 +23,17 @@ const routes = [
   },
   {
     path: "/AutomaticWebsite",
-    component: AutomaticWebsite
+    component: AutomaticWebsite,
+    children: [
+      {
+        path: "Page",
+        component: Page
+      },
+      {
+        path: "Chat",
+        component: Chat
+      }
+    ]
   }
 ];
 

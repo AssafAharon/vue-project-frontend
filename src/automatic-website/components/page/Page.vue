@@ -27,11 +27,11 @@ export default class Page extends Vue {
 </script>
 
 <style scoped>
-.page {
+/* .page {
   width: 100vw;
   height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
+} */
 </style>

@@ -11,7 +11,7 @@
         <MyPagesWindowFooter></MyPagesWindowFooter>
       </div>
     </div>
-    <router-link to="/AutomaticWebsite">
+    <router-link to="/AutomaticWebsite/Page">
       <w-button bg-color="info">Preview</w-button>
     </router-link>
   </div>
