@@ -102,25 +102,10 @@ export default class BookComponent extends Vue {
 </script>
 
 <style scoped>
-
-
 .book {
   position: relative;
-  width: 350px;
-  height: 500px;
+  width: 600px;
+  height: 800px;
   transition: transform 0.5s;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 </style>

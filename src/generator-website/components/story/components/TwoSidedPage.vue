@@ -73,7 +73,7 @@ export default class TwoSidedPageComponent extends Vue {
 .front {
   z-index: 1;
   backface-visibility: hidden;
-  border-left: 1px solid pink;
+  border-left: 1px solid #ffe8d1;
 }
 
 .back {
@@ -84,9 +84,7 @@ export default class TwoSidedPageComponent extends Vue {
 .back-content {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
 
 .back-content {

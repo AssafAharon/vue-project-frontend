@@ -1,9 +1,4 @@
 <template>
-  <!-- <router-link to="/GeneratorWebsite/WebsiteCreation">
-    <w-button bg-color="success">Create a New Website!</w-button>
-  </router-link>
-
-  <router-view></router-view>-->
   <div class="home">
     <div></div>
 
@@ -40,8 +35,8 @@ export default class Home extends Vue {
   @Ref() nextButtonDiv!: HTMLDivElement;
 
   onOpenBook(): void {
-    this.prevButtonDiv.style.transform = "translateX(-180px)";
-    this.nextButtonDiv.style.transform = "translateX(180px)";
+    this.prevButtonDiv.style.transform = "translateX(-300px)";
+    this.nextButtonDiv.style.transform = "translateX(300px)";
   }
 
   onCloseBook(): void {
@@ -65,7 +60,7 @@ export default class Home extends Vue {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: pink;
+  background: #ffe8d1;
 }
 
 .story-container {

@@ -32,7 +32,7 @@ export default class TopNavigationMenu extends Vue {
   margin-top: 15px;
   font-size: 20px;
   display: block;
-  color: white;
+  color: #826251;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -48,7 +48,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: turquoise;
+  background-color: #ffe8d1;
 }
 
 .left {
