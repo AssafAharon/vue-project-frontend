@@ -103,7 +103,7 @@ export default class PaperComponent extends Vue {
   width: 100%;
   height: 100%;
   min-height: 100%;
-  background: transparent;
+  background: transparent;   /*A MUST for dropping items one over the other (using '-1' of items z-index to be behind this invisible layer)*/ 
 }
 
 .back-content {
