@@ -1,12 +1,12 @@
 <template>
   <div :class="paperHTMLClass" :ref="paperHTMLRef" :style="paperStyle">
-    <div class="front" @drop="onDrop($event, 'front')" @dragenter.prevent @dragover.prevent>
+    <div class="front" @drop="onDrop($event)" @dragenter.prevent @dragover.prevent>
       <div class="front-content">
         <ImageComponent v-for="(image, index) in frontPage.items" :key="index" :image="image"></ImageComponent>
       </div>
     </div>
 
-    <div class="back" @drop="onDrop($event, 'back')">
+    <div class="back" @drop="onDrop($event)">
       <div class="back-content">
         <h1>{{ backPage.items }}</h1>
       </div>
@@ -63,15 +63,14 @@ export default class PaperComponent extends Vue {
     pageDiv.style.zIndex = this.paperNumber.toString();
   }
 
-  onDrop(event: DragEvent, pageSide: string): void {
-    console.log(pageSide, event);
+  onDrop(event: DragEvent): void {
     if (!event.dataTransfer) {
       return;
     }
 
     const droppedItem: Item = JSON.parse(event.dataTransfer.getData("image"));
-    console.log("DROPPED ", droppedItem);
-    this.frontPage.items.push(droppedItem);
+    const initialMouseOffsets = JSON.parse(event.dataTransfer.getData("initialMouseOffsets"));
+    this.frontPage.items.push({ ...droppedItem, top: (event.offsetY - initialMouseOffsets.offsetY), left: (event.offsetX - initialMouseOffsets.offsetX), zIndex: -1 });
   }
 }
 </script>
@@ -104,7 +103,7 @@ export default class PaperComponent extends Vue {
   width: 100%;
   height: 100%;
   min-height: 100%;
-  position: relative;
+  background: transparent;
 }
 
 .back-content {
