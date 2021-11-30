@@ -1,7 +1,9 @@
-export default class Page {
-  pageDetails: string;
+import Item from "./items/Item.class";
 
-  constructor(pageDetails: string) {
-    this.pageDetails = pageDetails;
+export default class Page {
+  items: Item[];
+
+  constructor() {
+    this.items = [];
   }
 }

@@ -1,4 +1,4 @@
-export default class Rectangle {
+export default class Item {
   top: number;
   left: number;
   width: number;

@@ -5,8 +5,8 @@
       :key="paper.paperNumber"
       :paperNumber="paper.paperNumber"
       :paperZIndex="book.papers.length - paper.paperNumber + 1"
-      :paperFrontSide="paper.frontPage"
-      :paperBackSide="paper.backPage"
+      :frontPage="paper.frontPage"
+      :backPage="paper.backPage"
       :ref="`p${paper.paperNumber}`"
     ></Paper>
   </div>
@@ -28,37 +28,19 @@ export default class BookComponent extends Vue {
       {
         paperNumber: 1,
         frontPage: {
-          pageDetails: "Front 1"
+          items: []
         },
         backPage: {
-          pageDetails: "Back 1"
+          items: []
         }
       },
       {
         paperNumber: 2,
         frontPage: {
-          pageDetails: "Front 2"
+          items: []
         },
         backPage: {
-          pageDetails: "Back 2"
-        }
-      },
-      {
-        paperNumber: 3,
-        frontPage: {
-          pageDetails: "Front 3"
-        },
-        backPage: {
-          pageDetails: "Back 3"
-        }
-      },
-      {
-        paperNumber: 4,
-        frontPage: {
-          pageDetails: "Front 4"
-        },
-        backPage: {
-          pageDetails: "Back 4"
+          items: []
         }
       }
     ]

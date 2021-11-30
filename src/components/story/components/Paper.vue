@@ -1,28 +1,35 @@
 <template>
   <div :class="paperHTMLClass" :ref="paperHTMLRef" :style="paperStyle">
-    <div class="front">
+    <div class="front" @drop="onDrop($event, 'front')" @dragenter.prevent @dragover.prevent>
       <div class="front-content">
-        <h1>{{ paperFrontSide.pageDetails }}</h1>
+        <ImageComponent v-for="(image, index) in frontPage.items" :key="index" :image="image"></ImageComponent>
       </div>
     </div>
 
-    <div class="back">
+    <div class="back" @drop="onDrop($event, 'back')">
       <div class="back-content">
-        <h1>{{ paperBackSide.pageDetails }}</h1>
+        <h1>{{ backPage.items }}</h1>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Prop, Vue } from "vue-property-decorator";
+import { Options, Prop, Vue } from "vue-property-decorator";
+import Item from "../entities/items/Item.class";
 import Page from "../entities/Page.class";
+import ImageComponent from "./Image.vue";
 
+@Options({
+  components: {
+    ImageComponent
+  }
+})
 export default class PaperComponent extends Vue {
   @Prop() paperNumber!: number;
   @Prop() paperZIndex!: number;
-  @Prop() paperFrontSide!: Page;
-  @Prop() paperBackSide!: Page;
+  @Prop() frontPage!: Page;
+  @Prop() backPage!: Page;
   @Prop() paperZIndexForPrevFlip!: string;
 
   get paperHTMLClass(): string {
@@ -55,6 +62,17 @@ export default class PaperComponent extends Vue {
     pageDiv.classList.add("flipped");
     pageDiv.style.zIndex = this.paperNumber.toString();
   }
+
+  onDrop(event: DragEvent, pageSide: string): void {
+    console.log(pageSide, event);
+    if (!event.dataTransfer) {
+      return;
+    }
+
+    const droppedItem: Item = JSON.parse(event.dataTransfer.getData("image"));
+    console.log("DROPPED ", droppedItem);
+    this.frontPage.items.push(droppedItem);
+  }
 }
 </script>
 
@@ -85,6 +103,7 @@ export default class PaperComponent extends Vue {
 .back-content {
   width: 100%;
   height: 100%;
+  min-height: 100%;
   position: relative;
 }
 
