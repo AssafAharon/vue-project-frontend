@@ -9,7 +9,7 @@
 
       <router-link to="/Contact"><li class="left menu-item">Contact</li></router-link>
 
-      <router-link to="/About"><li class="right menu-item">About</li></router-link>
+      <router-link to="/EditYourBook"><li class="right menu-item">Edit Your Book</li></router-link>
     </ul>
   </div>
 </template>
