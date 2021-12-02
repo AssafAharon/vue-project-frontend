@@ -8,6 +8,9 @@ const store: Store<AppState> = createStore({
   actions: {
   },
   getters: {
+    book() {
+      return store.state.books[0];
+    }
   }
 });
 

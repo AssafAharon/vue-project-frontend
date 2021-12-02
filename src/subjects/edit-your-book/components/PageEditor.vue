@@ -1,0 +1,53 @@
+<template>
+  <div class="page-editor">
+    <div class="drop-zone" @drop="onDrop($event)" @dragenter.prevent @dragover.prevent>
+    </div>
+
+    <ImageComponent v-for="(image, index) in page.items" :key="index" :image="image"></ImageComponent>
+  </div>
+</template>
+
+<script lang="ts">
+import Item from "@/subjects/story/entities/items/Item.class";
+import Page from "@/subjects/story/entities/Page.class";
+import { Options, Prop, Vue } from "vue-property-decorator";
+import ImageComponent from "../../story/components/Image.vue";
+
+@Options({
+    components: {
+    ImageComponent
+  }
+})
+export default class PageEditorComponent extends Vue {
+
+  @Prop() page!: Page;
+
+  onDrop(event: DragEvent): void {
+    if (!event.dataTransfer) {
+      return;
+    }
+
+    const droppedItem: Item = JSON.parse(event.dataTransfer.getData("image"));
+    const initialMouseOffsets = JSON.parse(event.dataTransfer.getData("initialMouseOffsets"));
+    this.page.items.push({ ...droppedItem, top: (event.offsetY - initialMouseOffsets.offsetY), left: (event.offsetX - initialMouseOffsets.offsetX), zIndex: 0 });
+  }
+}
+</script>
+
+<style scoped>
+.page-editor {
+  width: 600px;
+  height: 700px;
+  transition: transform 0.5s;
+  position: relative;
+  background: white;
+}
+
+.drop-zone {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: transparent;
+  z-index: 1;
+}
+</style>

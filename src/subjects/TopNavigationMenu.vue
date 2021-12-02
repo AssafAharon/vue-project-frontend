@@ -1,15 +1,29 @@
 <template>
   <div class="top-navigation-menu">
     <ul>
-      <li class="left"><img src="../assets/narrative-logo-basic.png"></li>
+      <li class="left">
+        <img src="../assets/narrative-logo-basic.png" />
+      </li>
 
-      <router-link to="/Home"><li class="left menu-item">Home</li></router-link>
+      <router-link to="/Home">
+        <li class="left menu-item">Home</li>
+      </router-link>
 
-      <router-link to="/News"><li class="left menu-item">News</li></router-link>
+      <router-link to="/News">
+        <li class="left menu-item">News</li>
+      </router-link>
 
-      <router-link to="/Contact"><li class="left menu-item">Contact</li></router-link>
+      <router-link to="/Contact">
+        <li class="left menu-item">Contact</li>
+      </router-link>
 
-      <router-link to="/EditYourBook"><li class="right menu-item">Edit Your Book</li></router-link>
+      <router-link to="/EditYourBook">
+        <li class="right menu-item">Edit Your Book</li>
+      </router-link>
+
+      <router-link to="/Preview">
+        <li class="right menu-item">Preview</li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -64,6 +78,6 @@ li a:hover:not(.active) {
 }
 
 .active {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
 }
 </style>

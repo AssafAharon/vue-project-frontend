@@ -1,6 +1,6 @@
 import Page from "./Page.class";
 
-export default class PageSide {
+export default class Paper {
   paperNumber: number;
   frontPage: Page;
   backPage: Page;

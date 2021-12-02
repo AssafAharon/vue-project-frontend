@@ -8,8 +8,8 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-property-decorator";
-import ImageComponent from "./story/components/Image.vue";
-import Image from "./story/entities/items/image.class";
+import ImageComponent from "../../story/components/Image.vue";
+import Image from "../../story/entities/items/Image.class";
 
 @Options({
   components: {
@@ -33,6 +33,7 @@ export default class ItemBoxComponent extends Vue {
   width: 100%;
   height: 15%;
   position: relative;
-  background: #568ea3;
+  background: #826251;
+  z-index: 2;
 }
 </style>

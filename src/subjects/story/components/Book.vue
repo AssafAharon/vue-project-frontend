@@ -100,7 +100,6 @@ export default class BookComponent extends Vue {
       this.currentLocation--;
     }
   }
-
 }
 </script>
 

@@ -1,6 +1,5 @@
 <template>
-  <div class="edit-your-book">
-
+  <div class="preview">
     <div class="story-container">
       <div class="prev-button" ref="prevButtonDiv">
         <w-button @click="onPrevButtonClicked">[--</w-button>
@@ -12,32 +11,25 @@
         <w-button @click="onNextButtonClicked">--]</w-button>
       </div>
     </div>
-
-    <ItemBoxComponent></ItemBoxComponent>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Ref, Vue } from "vue-property-decorator";
 import BookComponent from "./story/components/Book.vue";
-import TextComponent from "./story/components/Text.vue";
-import ItemBoxComponent from "../components/ItemBox.vue";
 
 @Options({
   components: {
-    BookComponent,
-    ItemBoxComponent,
-    TextComponent
+    BookComponent
   }
 })
-export default class EditYourBookComponent extends Vue {
+export default class PreviewComponent extends Vue {
   @Ref() bookComponent!: BookComponent;
-
   @Ref() prevButtonDiv!: HTMLDivElement;
   @Ref() nextButtonDiv!: HTMLDivElement;
 
   onOpenBook(): void {
-    this.prevButtonDiv.style.transform = "translateX(-300px)"; 
+    this.prevButtonDiv.style.transform = "translateX(-300px)";
     this.nextButtonDiv.style.transform = "translateX(300px)";
   }
 
@@ -57,7 +49,7 @@ export default class EditYourBookComponent extends Vue {
 </script>
 
 <style scoped>
-.edit-your-book {
+.preview {
   height: calc(100vh - 90px);
   display: flex;
   flex-direction: column;
@@ -65,9 +57,8 @@ export default class EditYourBookComponent extends Vue {
   background: #ffe8d1;
   overflow-y: hidden;
 }
-
 .story-container {
-  height: 85%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

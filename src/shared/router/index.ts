@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import App from "../../App.vue";
-import Home from "../../components/Home.vue";
-import EditYourBook from "../../components/EditYourBook.vue";
+import Home from "../../subjects/Home.vue";
+import EditYourBook from "../../subjects/edit-your-book/EditYourBook.vue";
+import PreviewComponent from "../../subjects/Preview.vue";
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
   {
     path: "/EditYourBook",
     component: EditYourBook
+  },
+  {
+    path: "/Preview",
+    component: PreviewComponent
   }
 ];
 

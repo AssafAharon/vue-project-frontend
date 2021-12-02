@@ -1,14 +1,16 @@
 <template>
-  <div :class="paperHTMLClass" :ref="paperHTMLRef" :style="paperStyle">
-    <div class="front" @drop="onDrop($event)" @dragenter.prevent @dragover.prevent>
-      <div class="front-content">
-        <ImageComponent v-for="(image, index) in frontPage.items" :key="index" :image="image"></ImageComponent>
+  <div class="wrapper">
+    <div :class="paperHTMLClass" :ref="paperHTMLRef" :style="paperStyle">
+      <div class="front">
+        <div class="front-content">
+          <ImageComponent v-for="(image, index) in frontPage.items" :key="index" :image="image"></ImageComponent>
+        </div>
       </div>
-    </div>
 
-    <div class="back" @drop="onDrop($event)">
-      <div class="back-content">
-        <h1>{{ backPage.items }}</h1>
+      <div class="back">
+        <div class="back-content">
+          <ImageComponent v-for="(image, index) in backPage.items" :key="index" :image="image"></ImageComponent>
+        </div>
       </div>
     </div>
   </div>
@@ -16,7 +18,6 @@
 
 <script lang="ts">
 import { Options, Prop, Vue } from "vue-property-decorator";
-import Item from "../entities/items/Item.class";
 import Page from "../entities/Page.class";
 import ImageComponent from "./Image.vue";
 
@@ -62,16 +63,6 @@ export default class PaperComponent extends Vue {
     pageDiv.classList.add("flipped");
     pageDiv.style.zIndex = this.paperNumber.toString();
   }
-
-  onDrop(event: DragEvent): void {
-    if (!event.dataTransfer) {
-      return;
-    }
-
-    const droppedItem: Item = JSON.parse(event.dataTransfer.getData("image"));
-    const initialMouseOffsets = JSON.parse(event.dataTransfer.getData("initialMouseOffsets"));
-    this.frontPage.items.push({ ...droppedItem, top: (event.offsetY - initialMouseOffsets.offsetY), left: (event.offsetX - initialMouseOffsets.offsetX), zIndex: -1 });
-  }
 }
 </script>
 
@@ -103,7 +94,7 @@ export default class PaperComponent extends Vue {
   width: 100%;
   height: 100%;
   min-height: 100%;
-  background: transparent;   /*A MUST for dropping items one over the other (using '-1' of items z-index to be behind this invisible layer)*/ 
+  position: relative;
 }
 
 .back-content {
