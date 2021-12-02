@@ -2,14 +2,14 @@
   <div class="edit-your-book">
     <div class="left-section">
       <div class="page-editor-container">
-        <PageEditor :page="book.papers[0].frontPage"></PageEditor>
+        <PageEditor :page="book.pages[0]"></PageEditor>
       </div>
 
       <ItemBoxComponent></ItemBoxComponent>
     </div>
 
     <div class="right-section">
-      <PageBox :papers="book.papers"></PageBox>
+      <PageBox></PageBox>
     </div>
   </div>
 </template>
@@ -21,7 +21,6 @@ import PageBox from "./components/PageBox.vue";
 import PageEditor from "./components/PageEditor.vue"
 import ItemBoxComponent from "./components/ItemBox.vue";
 import Book from "../story/entities/Book.class";
-
 
 @Options({
   components: {

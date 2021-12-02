@@ -4,13 +4,14 @@
       <ImageComponent v-for="(image, index) in shrunkItems(page, 5)" :key="index" :image="image"></ImageComponent>
     </div>
   </div>
+  <w-button @click="addPage" bg-color="info">+</w-button>
 </template>
 
 <script lang="ts">
+import store from "@/shared/store/store";
 import Item from "@/subjects/story/entities/items/Item.class";
 import Page from "@/subjects/story/entities/Page.class";
-import Paper from "@/subjects/story/entities/Paper.class";
-import { Options, Prop, Vue } from "vue-property-decorator";
+import { Options, Vue } from "vue-property-decorator";
 import ImageComponent from "../../story/components/Image.vue";
 
 @Options({
@@ -19,8 +20,8 @@ import ImageComponent from "../../story/components/Image.vue";
   }
 })
 export default class PageBoxComponent extends Vue {
-  @Prop() papers!: Paper[];
-  pages: Page[] = this.papers.reduce((acc: Page[], paper) => [...acc, paper.frontPage, paper.backPage], []);
+  pages: Page[] = store.getters.book.pages;
+
   pageTopPosition = (pageNumber: number): string => `top: ${pageNumber * 140 + (pageNumber + 1) * 15}px`;
 
   shrunkItems(page: Page, shrinkRatio: number): Item[] {
@@ -35,6 +36,9 @@ export default class PageBoxComponent extends Vue {
     });
   }
 
+  addPage(): void {
+    store.commit("addPage");
+  }
 }
 </script>
 

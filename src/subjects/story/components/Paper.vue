@@ -9,7 +9,7 @@
 
       <div class="back">
         <div class="back-content">
-          <ImageComponent v-for="(image, index) in backPage.items" :key="index" :image="image"></ImageComponent>
+          <!-- <ImageComponent v-for="(image, index) in backPage.items" :key="index" :image="image"></ImageComponent> -->
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@ export default class PaperComponent extends Vue {
   @Prop() paperNumber!: number;
   @Prop() paperZIndex!: number;
   @Prop() frontPage!: Page;
-  @Prop() backPage!: Page;
+  //@Prop() backPage!: Page;
   @Prop() paperZIndexForPrevFlip!: string;
 
   get paperHTMLClass(): string {

@@ -9,7 +9,6 @@ export default class TextComponent extends Vue {
 
   @Prop() text!: string;
 }
-
 </script>
 
 <style scoped>
