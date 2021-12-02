@@ -1,11 +1,18 @@
 <template>
-  <div class="page-editor">
-    <div class="drop-zone" @drop="onDrop($event)" @dragenter.prevent @dragover.prevent>
-    </div>
+  <div v-if="pageToDisplay" class="page-editor">
+    <div class="drop-zone" @drop="onDrop($event)" @dragenter.prevent @dragover.prevent></div>
 
     <ImageComponent v-for="(image, index) in pageToDisplay.items" :key="index" :image="image"></ImageComponent>
 
     <w-button @click="savePage" bg-color="success">Save</w-button>
+
+    <router-link to="/Preview">
+      <w-button bg-color="info">Preview</w-button>
+    </router-link>
+  </div>
+
+  <div v-if="!pageToDisplay" class="page-adder">
+    <p>Add a Page</p>
   </div>
 </template>
 
@@ -17,17 +24,13 @@ import { Options, Prop, Vue } from "vue-property-decorator";
 import ImageComponent from "../../story/components/Image.vue";
 
 @Options({
-    components: {
+  components: {
     ImageComponent
   }
 })
 export default class PageEditorComponent extends Vue {
 
-  @Prop() page!: Page;
-  pageToDisplay: Page = {
-    pageNumber: this.page.pageNumber,
-    items: [...this.page.items]
-  }
+  @Prop() pageToDisplay!: Page;
 
   onDrop(event: DragEvent): void {
     if (!event.dataTransfer) {
@@ -49,7 +52,6 @@ export default class PageEditorComponent extends Vue {
 .page-editor {
   width: 600px;
   height: 700px;
-  transition: transform 0.5s;
   position: relative;
   background: white;
 }
@@ -60,5 +62,10 @@ export default class PageEditorComponent extends Vue {
   position: relative;
   background: transparent;
   z-index: 1;
+}
+
+.page-adder {
+  width: 600px;
+  height: 700px;
 }
 </style>

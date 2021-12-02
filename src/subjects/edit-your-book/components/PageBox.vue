@@ -1,6 +1,6 @@
 <template>
   <div class="page-box">
-    <div v-for="(page, index) in pages" :key="index" class="page" :style="pageTopPosition(index)">
+    <div v-for="(page, index) in pages" :key="index" @click="onPageClick(page)" class="page" :style="pageTopPosition(index)">
       <ImageComponent v-for="(image, index) in shrunkItems(page, 5)" :key="index" :image="image"></ImageComponent>
     </div>
   </div>
@@ -11,7 +11,7 @@
 import store from "@/shared/store/store";
 import Item from "@/subjects/story/entities/items/Item.class";
 import Page from "@/subjects/story/entities/Page.class";
-import { Options, Vue } from "vue-property-decorator";
+import { Emit, Options, Vue } from "vue-property-decorator";
 import ImageComponent from "../../story/components/Image.vue";
 
 @Options({
@@ -39,6 +39,11 @@ export default class PageBoxComponent extends Vue {
   addPage(): void {
     store.commit("addPage");
   }
+
+  @Emit()
+  onPageClick(clickedPage: Page): Page {
+    return clickedPage;
+  }
 }
 </script>
 
@@ -57,5 +62,10 @@ export default class PageBoxComponent extends Vue {
   position: absolute;
   left: 20%;
   background: white;
+
+}
+
+div :hover {
+  cursor: pointer;
 }
 </style>

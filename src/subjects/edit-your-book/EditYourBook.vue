@@ -2,14 +2,14 @@
   <div class="edit-your-book">
     <div class="left-section">
       <div class="page-editor-container">
-        <PageEditor :page="book.pages[0]"></PageEditor>
+        <PageEditor :pageToDisplay="pageToDisplay"></PageEditor>
       </div>
 
       <ItemBoxComponent></ItemBoxComponent>
     </div>
 
     <div class="right-section">
-      <PageBox></PageBox>
+      <PageBox @onPageClick="displaySelectedPage"></PageBox>
     </div>
   </div>
 </template>
@@ -21,6 +21,7 @@ import PageBox from "./components/PageBox.vue";
 import PageEditor from "./components/PageEditor.vue"
 import ItemBoxComponent from "./components/ItemBox.vue";
 import Book from "../story/entities/Book.class";
+import Page from "../story/entities/Page.class";
 
 @Options({
   components: {
@@ -31,6 +32,14 @@ import Book from "../story/entities/Book.class";
 })
 export default class EditYourBookComponent extends Vue {
   book: Book = store.getters.book;
+  pageToDisplay: Page = this.book.pages[0] || null;
+
+  displaySelectedPage(selectedPage: Page): void {
+    this.pageToDisplay = {
+      pageNumber: selectedPage.pageNumber,
+      items: [...selectedPage.items] 
+      };
+  }
 }
 </script>
 

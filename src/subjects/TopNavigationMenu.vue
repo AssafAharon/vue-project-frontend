@@ -20,10 +20,6 @@
       <router-link to="/EditYourBook">
         <li class="right menu-item">Edit Your Book</li>
       </router-link>
-
-      <router-link to="/Preview">
-        <li class="right menu-item">Preview</li>
-      </router-link>
     </ul>
   </div>
 </template>
