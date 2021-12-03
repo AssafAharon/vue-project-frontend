@@ -1,14 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-import App from "../../App.vue";
 import Home from "../../subjects/Home.vue";
 import EditYourBook from "../../subjects/edit-your-book/EditYourBook.vue";
 import PreviewComponent from "../../subjects/Preview.vue";
 
 const routes = [
-  {
-    path: "/",
-    component: App
-  },
   {
     path: "/Home",
     component: Home
