@@ -46,7 +46,7 @@ export default class Header extends Vue {
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   font-size: 30px;
   padding-left: 25px;
   -moz-user-select: none;

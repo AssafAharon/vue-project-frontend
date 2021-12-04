@@ -28,7 +28,7 @@ export default class NavigationComponent extends Vue {
   height: 100vh;
   max-height: 0vh;
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   background: black;
   opacity: 0.8;
   transition: 0.2s linear;

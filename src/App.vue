@@ -4,7 +4,9 @@
       <Header @openNavigation="onOpenNavigation" @closeNavigation="onCloseNavigation"></Header>
       <NavigationComponent ref="navigationComponent"></NavigationComponent>
 
-      <router-view></router-view>
+      <div class="app-view">
+        <router-view></router-view>
+      </div>
     </div>
   </w-app>
 </template>
@@ -40,7 +42,10 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.app {
-  position: relative;
+.app-view {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
 }
 </style>

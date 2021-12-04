@@ -5,7 +5,7 @@ import PreviewComponent from "../../subjects/Preview.vue";
 
 const routes = [
   {
-    path: "/Home",
+    path: "/",
     component: Home
   },
   {
