@@ -1,7 +1,9 @@
 <template>
   <div class="header">
     <div ref="left-side" class="clickable">
-      <h1>𝒩</h1>
+      <router-link to="/">
+        <h1>𝒩</h1>
+      </router-link>
     </div>
 
     <div ref="right-side" class="clickable">
@@ -14,9 +16,8 @@
 <script lang="ts">
 import { Emit, Vue } from "vue-property-decorator";
 
-export default class Header extends Vue {
+export default class HeaderComponent extends Vue {
   isNavigationActive = false;
-
 
   @Emit()
   openNavigation(): void {
@@ -29,6 +30,10 @@ export default class Header extends Vue {
 
   @Emit()
   closeNavigation(): void {
+    this.restoreDefaultHeaderItems();
+  }
+
+  restoreDefaultHeaderItems(): void {
     this.isNavigationActive = false;
     const leftSideDiv = this.$refs["left-side"] as HTMLDivElement;
     const rightSideDiv = this.$refs["right-side"] as HTMLDivElement;

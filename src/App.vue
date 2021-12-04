@@ -1,8 +1,12 @@
 <template>
   <w-app>
     <div class="app">
-      <Header @openNavigation="onOpenNavigation" @closeNavigation="onCloseNavigation"></Header>
-      <NavigationComponent ref="navigationComponent"></NavigationComponent>
+      <HeaderComponent
+        ref="headerComponent"
+        @openNavigation="onOpenNavigation"
+        @closeNavigation="onCloseNavigation"
+      ></HeaderComponent>
+      <NavigationComponent ref="navigationComponent" @close="onNavigationClosed"></NavigationComponent>
 
       <div class="app-view">
         <router-view></router-view>
@@ -13,24 +17,30 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-property-decorator';
-import Header from "./subjects/Header.vue";
+import HeaderComponent from "./subjects/Header.vue";
 import NavigationComponent from "./subjects/Navigation.vue";
 
 @Options({
   components: {
-    Header,
+    HeaderComponent,
     NavigationComponent
   }
 })
 export default class App extends Vue {
+
   onOpenNavigation(): void {
     const navigation: NavigationComponent = this.$refs["navigationComponent"] as NavigationComponent;
     navigation.open();
   }
 
-  onCloseNavigation(): void {
+  onCloseNavigation(): void {   //Called when we close navigation from Header 
     const navigation: NavigationComponent = this.$refs["navigationComponent"] as NavigationComponent;
     navigation.close();
+  }
+
+  onNavigationClosed(): void {   //Called when we clicked a link in Navigation
+    const header: HeaderComponent = this.$refs["headerComponent"] as HeaderComponent;
+    header.restoreDefaultHeaderItems();
   }
 }
 </script>

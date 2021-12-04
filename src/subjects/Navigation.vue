@@ -3,13 +3,17 @@
     <div class="navigation-links">
       <ul ref="navigation-links">
         <li>New Narrative</li>
+
+        <router-link to="/EditYourBook">
+          <li @click="onLinkClicked">Edit Existing Narrative</li>
+        </router-link>
       </ul>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-property-decorator";
+import { Emit, Vue } from "vue-property-decorator";
 
 export default class NavigationComponent extends Vue {
   open(): void {
@@ -20,11 +24,16 @@ export default class NavigationComponent extends Vue {
 
   }
 
+  @Emit()
   close(): void {
     const navigationDiv: HTMLDivElement = this.$refs["navigation"] as HTMLDivElement;
     navigationDiv.classList.remove("show");
     const navigationLinksUL: HTMLUListElement = this.$refs["navigation-links"] as HTMLUListElement;
     navigationLinksUL.classList.remove("show");
+  }
+
+  onLinkClicked(): void {
+    this.close();
   }
 }
 </script>
@@ -56,7 +65,7 @@ export default class NavigationComponent extends Vue {
 
 ul {
   list-style-type: none;
-  max-height: 0%; 
+  max-height: 0%;
   overflow: hidden;
   transition: 0.2s linear;
 }
