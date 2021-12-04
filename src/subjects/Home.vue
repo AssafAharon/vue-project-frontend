@@ -1,9 +1,16 @@
 <template>
   <div class="home">
-    <VueperSlides autoplay :duration="5000" :arrows="false" :bullets="false" fixedHeight="100%">
-      <VueperSlide v-for="index in 3" :key="index" :title="index.toString()" />
-    </VueperSlides>
-    <img :src="require(`../assets/${images[2]}`)" />
+    <div class="vueper-slides-container">
+      <VueperSlides autoplay :duration="5000" :arrows="false" :bullets="false" fixed-height="100vh">
+        <VueperSlide
+          v-for="(image, index) in images"
+          :key="index"
+          :image="require(`../assets/${image}`)"
+        />
+      </VueperSlides>
+    </div>
+
+    <div class="overlay"></div>
   </div>
 </template>
 
@@ -24,12 +31,6 @@ export default class Home extends Vue {
     "img2.png",
     "img3.jpg"
   ];
-
-  getImgUrl(src: string) {
-    const images = require.context("../assets/", false, /\.png$/);
-    return images("./" + src);
-  }
-
 }
 </script>
 
@@ -37,8 +38,21 @@ export default class Home extends Vue {
 .home {
   width: 100%;
   height: 100%;
+  position: relative;
 }
-.vueperslide {
-  background: linear-gradient(-45deg, #faa990, #e691b1, #b0dff0, #c5ebe2);
+
+.vueper-slides-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background: transparent;
 }
 </style>
