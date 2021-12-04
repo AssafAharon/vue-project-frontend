@@ -1,7 +1,9 @@
 <template>
   <div ref="navigation" class="navigation">
-    <div ref="navigation-links" class="navigation-links">
-      <p>lala</p>
+    <div class="navigation-links">
+      <ul ref="navigation-links">
+        <li>New Narrative</li>
+      </ul>
     </div>
   </div>
 </template>
@@ -13,11 +15,16 @@ export default class NavigationComponent extends Vue {
   open(): void {
     const navigationDiv: HTMLDivElement = this.$refs["navigation"] as HTMLDivElement;
     navigationDiv.classList.add("show");
+    const navigationLinksUL: HTMLUListElement = this.$refs["navigation-links"] as HTMLUListElement;
+    navigationLinksUL.classList.add("show");
+
   }
 
   close(): void {
     const navigationDiv: HTMLDivElement = this.$refs["navigation"] as HTMLDivElement;
     navigationDiv.classList.remove("show");
+    const navigationLinksUL: HTMLUListElement = this.$refs["navigation-links"] as HTMLUListElement;
+    navigationLinksUL.classList.remove("show");
   }
 }
 </script>
@@ -26,7 +33,7 @@ export default class NavigationComponent extends Vue {
 .navigation {
   width: 100vw;
   height: 100vh;
-  max-height: 0vh;
+  max-height: 0%;
   position: absolute;
   z-index: 1;
   background: black;
@@ -35,8 +42,7 @@ export default class NavigationComponent extends Vue {
 }
 
 .show {
-  max-height: 100vh;
-  overflow: hidden;
+  max-height: 100%;
   transition: 0.2s linear;
 }
 
@@ -48,7 +54,15 @@ export default class NavigationComponent extends Vue {
   align-items: center;
 }
 
-p {
-  color:ivory;
+ul {
+  list-style-type: none;
+  max-height: 0%; 
+  overflow: hidden;
+  transition: 0.2s linear;
+}
+
+li {
+  color: ivory;
+  font-size: 30px;
 }
 </style>
