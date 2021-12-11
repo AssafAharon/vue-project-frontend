@@ -18,7 +18,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-property-decorator';
 import HeaderComponent from "./subjects/Header.vue";
-import NavigationComponent from "./subjects/Navigation.vue";
+import NavigationComponent from "./subjects/navigation/Navigation.vue";
 
 @Options({
   components: {

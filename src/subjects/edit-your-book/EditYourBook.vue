@@ -45,7 +45,7 @@ export default class EditYourBookComponent extends Vue {
 
 <style scoped>
 .edit-your-book {
-  height: calc(100vh - 90px);
+  height: 100vh;
   display: flex;
   justify-content: space-between;
   background: #ffe8d1;

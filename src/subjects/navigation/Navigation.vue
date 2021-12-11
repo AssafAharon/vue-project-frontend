@@ -1,27 +1,68 @@
 <template>
   <div ref="navigation" class="navigation">
     <div class="navigation-links">
-      <ul ref="navigation-links">
-        <li>New Narrative</li>
-
-        <router-link to="/EditYourBook">
-          <li @click="onLinkClicked">Edit Existing Narrative</li>
+      <div class="lulu" ref="navigation-links">
+        <router-link v-for="(link, index) in links" :key="index" :to="link.pathTo">
+          <div class="lala" @click="onLinkClicked">{{ link.label }}</div>
         </router-link>
-      </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Emit, Vue } from "vue-property-decorator";
+import NavigationLink from "./NavigationLink.class";
 
 export default class NavigationComponent extends Vue {
+  links: NavigationLink[] = [
+    {
+      label: "Create a Narrative",
+      pathTo: "/CreateNarrative"
+    },
+    {
+      label: "Edit Existing Narrative",
+      pathTo: "/EditYourBook"
+    },
+       {
+      label: "Edit Existing Narrative",
+      pathTo: "/EditYourBook"
+    },
+       {
+      label: "Edit Existing Narrative",
+      pathTo: "/EditYourBook"
+    },
+       {
+      label: "Edit Existing Narrative",
+      pathTo: "/EditYourBook"
+    },
+       {
+      label: "Edit Existing Narrative",
+      pathTo: "/EditYourBook"
+    },
+       {
+      label: "Edit Existing Narrative",
+      pathTo: "/EditYourBook"
+    },
+       {
+      label: "Edit Existing Narrative",
+      pathTo: "/EditYourBook"
+    },
+       {
+      label: "Edit Existing Narrative",
+      pathTo: "/EditYourBook"
+    },
+       {
+      label: "Edit Existing Narrative",
+      pathTo: "/EditYourBook"
+    }
+  ];
+
   open(): void {
     const navigationDiv: HTMLDivElement = this.$refs["navigation"] as HTMLDivElement;
     navigationDiv.classList.add("show");
     const navigationLinksUL: HTMLUListElement = this.$refs["navigation-links"] as HTMLUListElement;
     navigationLinksUL.classList.add("show");
-
   }
 
   @Emit()
@@ -63,15 +104,19 @@ export default class NavigationComponent extends Vue {
   align-items: center;
 }
 
-ul {
+.lulu {
   list-style-type: none;
   max-height: 0%;
   overflow: hidden;
   transition: 0.2s linear;
 }
 
-li {
-  color: ivory;
+.lala {
+  display: flex;
+  justify-content: center;
   font-size: 30px;
+  background: linear-gradient(120deg, #d7a9e3ff, #8bbee8ff, #a8d5baff);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>

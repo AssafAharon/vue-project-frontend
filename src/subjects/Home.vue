@@ -1,13 +1,24 @@
 <template>
   <div class="home">
-    <div class="vueper-slides-container">
-      <VueperSlides autoplay :duration="5000" :arrows="false" :bullets="false" fixed-height="100vh">
-        <VueperSlide
-          v-for="(image, index) in images"
-          :key="index"
-          :image="require(`../assets/${image}`)"
-        />
-      </VueperSlides>
+    <div class="underlay">
+      <div class="content-container">
+        <div class="content-header">
+          <div></div>
+          <div class="content-header-slogens">
+            <h1>Narrative</h1>
+            <p>Tell Us Your Story!</p>
+          </div>
+          <div></div>
+          <div></div>
+          <img :src="require(`../assets/${bookImage}`)" />
+          <div></div>
+        </div>
+        <div></div>
+      </div>
+
+      <div class="gradient-container">
+        <div class="gradient"></div>
+      </div>
     </div>
 
     <div class="overlay"></div>
@@ -16,21 +27,14 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-property-decorator";
-import { VueperSlides, VueperSlide } from 'vueperslides';
-import 'vueperslides/dist/vueperslides.css';
 
 
 @Options({
   components: {
-    VueperSlides, VueperSlide
   }
 })
 export default class Home extends Vue {
-  images: string[] = [
-    "img1.png",
-    "img2.png",
-    "img3.jpg"
-  ];
+  bookImage = "result-4.png";
 }
 </script>
 
@@ -39,13 +43,77 @@ export default class Home extends Vue {
   width: 100%;
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
-.vueper-slides-container {
+.underlay {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 0;
+}
+
+.content-container {
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.content-header {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.content-header-slogens {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  font-size: 100px;
+  background: linear-gradient(120deg, #d7a9e3ff, #8bbee8ff, #a8d5baff);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+p {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 30px;
+  color: #4b3d8f;
+}
+
+img {
+  width: 35vw;
+  height: 40vh;
+  margin-top: 15vh;
+}
+
+.gradient-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.gradient {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  top: 45vh;
+  left: 23vw;
+  background: linear-gradient(120deg, #d7a9e3ff, #8bbee8ff, #a8d5baff);
+  transform: rotate(-35deg);
 }
 
 .overlay {

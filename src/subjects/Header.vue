@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div ref="left-side" class="clickable">
+    <div ref="left-side" class="clickable unbleached">
       <router-link to="/">
         <h1>𝒩</h1>
       </router-link>
@@ -60,8 +60,10 @@ export default class HeaderComponent extends Vue {
   user-select: none;
 }
 
-img {
-  width: 7%;
+.unbleached {
+  background: #4b3d8f;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .clickable :hover {
@@ -72,7 +74,7 @@ img {
   width: 50px;
   height: 50px;
   margin-right: 20px;
-  background: #ff0044;
+  background: #4b3d8f;
   border-radius: 50%;
 }
 
@@ -81,6 +83,8 @@ img {
 }
 
 .bleached {
-  color: white;
+  background: linear-gradient(120deg, #d7a9e3ff, #8bbee8ff, #a8d5baff);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>
